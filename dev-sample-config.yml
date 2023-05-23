@@ -1,0 +1,25 @@
+APIMode: DEBUG
+AppName: Mocker
+DatabaseConfig:
+  dialect: mysql
+  host: 172.16.43.55
+  port: 3306
+  username: zero_qauser
+  password: zero_qauser
+  database: zero
+  protocol: tcp
+  timeout: 250
+  logfile: "mocker_db.log"
+LoggingConfig:
+  LogLevel: DEBUG
+  Path: "mocker_app.log"
+ServerConfig:
+  Port: 7357
+  AccessLog: "mocker_access.log"
+  ErrorLog: "mocker_error.log"
+  StaticPath:
+AppServerConfig:
+  protocol: https
+  host:
+Constants:
+  flowEvictionHours: 24

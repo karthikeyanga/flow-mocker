@@ -1,0 +1,26 @@
+APIMode: QA
+AppName: Mocker
+DatabaseConfig:
+  dialect: sqlite
+  path: mocker.sqllite
+  host: 172.16.43.55
+  port: 3306
+  username: qauser
+  password: qauser
+  database: mocker
+  protocol: tcp
+  timeout: 250
+  logfile: "mocker_db.log"
+LoggingConfig:
+  LogLevel: DEBUG
+  Path: "mocker_app.log"
+ServerConfig:
+  Port: 7357
+  AccessLog: "mocker_access.log"
+  ErrorLog: "mocker_error.log"
+  StaticPath:
+AppServerConfig:
+  protocol: https
+  host:
+Constants:
+  flowEvictionHours: 120

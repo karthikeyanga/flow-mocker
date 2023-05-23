@@ -1,0 +1,43 @@
+https://sequencediagram.org/
+
+
+title Mocker Sequence Diagram
+actor Client
+Client->Router:Send the http request \nwith url, method, header \nand body
+Router->API: send the api with its\n path params and other \nrequest params
+alt If a flow macthing the current reqeust is identified
+API->Flow: After identifying the flow, from loaded flows
+
+
+loop for header,status, response body
+Flow->Template: For this api in the flow\nconfig sends the body,\nheader and status \ntemplates for elaluation
+
+loop for each of the parts of template
+alt Only text template
+Template->Template: Returns the text
+else Only Getting and Setting
+Template-->Object: Gets, sets the object params
+else needs saving in db by calling SaveObject
+Template->Object: Saves the object to db\nmaking the change permenent
+end
+end
+Template->Flow: Gives the evaluated response
+end
+
+loop for status, header, response body
+alt If empty template
+API->API: Uses the default template/value
+else Floaw has a non empty template
+Flow->API: Uses the evaluted response from flow
+end
+end
+else
+API->API: Uses the default response/header and status
+end
+
+
+API->Router: Returns the request's rendered response
+
+
+Router->Client: Send the final formated\nresponse
+
